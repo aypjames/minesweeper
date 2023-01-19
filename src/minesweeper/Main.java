@@ -15,7 +15,9 @@ public class Main {
 		   // if coordinate is bomb - response boom and return game lost
 			// else continue game and get new coordinates inputs from user. 
 			// if all non-mine square are revealed, return game is won! and play new game. 
-
+		// //
+		// comment 
+	
 	}
 
 }
