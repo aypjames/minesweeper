@@ -1,5 +1,7 @@
 package minesweeper;
 
+import java.util.Scanner;
+
 public class Main {
 	
 	int[][] minefield = new int[10][10];
@@ -7,16 +9,34 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		// logic to build minefield
-			// randomly allocate mines
-		
-		// logic to playgame
-		   // get user input coordinates - column (Num) and row (Char) number based on 10 x 10 grid. 
-		   // if coordinate is bomb - response boom and return game lost
-			// else continue game and get new coordinates inputs from user. 
-			// if all non-mine square are revealed, return game is won! and play new game. 
-		// //
-		// comment 
+		Scanner scanner = new Scanner(System.in);
+		// Params =  amount of rows, amount of Columns, amount of mines.
+        GameLogic game = new GameLogic(10, 10, 10);
+
+        while (!game.isGameOver()) {
+            printBoard(game);
+            System.out.println("Enter row (1-10) and column (1-10) to reveal:");
+            int row = scanner.nextInt();
+            int col = scanner.nextInt();
+            game.reveal(row - 1, col - 1);
+        }
+        System.out.println("Boom! Game Over!");
+        printBoard(game);
+    }
+
+    private static void printBoard(GameLogic game) {
+        for (int i = 0; i < game.getRows(); i++) {
+            for (int j = 0; j < game.getCols(); j++) {
+                if (!game.isRevealed(i,j)) {
+                    System.out.print("X ");
+                } else if (game.isMine(i,j)) {
+                    System.out.print("* ");
+                } else {
+                    System.out.print(game.adjacentMines(i,j) + " ");
+                }
+            }
+            System.out.println();
+        }
 	
 	}
 
